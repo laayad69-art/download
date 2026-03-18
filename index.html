@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>تحميل ZMAX3</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --bg: #060a18;
+      --card: #0d1428;
+      --accent: #3b82f6;
+      --accent2: #1d4ed8;
+      --glow-color: rgba(59,130,246,0.35);
+      --text: #e8edf8;
+      --sub: #7b90b8;
+    }
+    body {
+      font-family: 'Cairo', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      position: relative;
+    }
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: radial-gradient(1.5px 1.5px at 20% 15%, rgba(255,255,255,0.6) 0%, transparent 100%),
+        radial-gradient(1px 1px at 70% 30%, rgba(255,255,255,0.4) 0%, transparent 100%),
+        radial-gradient(1.5px 1.5px at 45% 65%, rgba(255,255,255,0.5) 0%, transparent 100%),
+        radial-gradient(1px 1px at 85% 80%, rgba(255,255,255,0.3) 0%, transparent 100%),
+        radial-gradient(1px 1px at 10% 85%, rgba(255,255,255,0.4) 0%, transparent 100%),
+        radial-gradient(2px 2px at 60% 10%, rgba(255,255,255,0.5) 0%, transparent 100%),
+        radial-gradient(1px 1px at 30% 50%, rgba(255,255,255,0.3) 0%, transparent 100%),
+        radial-gradient(1.5px 1.5px at 90% 50%, rgba(255,255,255,0.4) 0%, transparent 100%);
+      pointer-events: none;
+    }
+    .orb { position: fixed; border-radius: 50%; filter: blur(100px); pointer-events: none; }
+    .orb1 { width: 500px; height: 500px; background: rgba(29,78,216,0.2); top: -150px; left: -100px; }
+    .orb2 { width: 400px; height: 400px; background: rgba(59,130,246,0.15); bottom: -100px; right: -80px; }
+    .orb3 { width: 250px; height: 250px; background: rgba(96,165,250,0.12); top: 40%; left: 50%; transform: translate(-50%,-50%); }
+    .card {
+      position: relative; z-index: 10;
+      background: linear-gradient(160deg, #0f1a35 0%, #0a1020 100%);
+      border: 1px solid rgba(59,130,246,0.2);
+      border-radius: 32px;
+      max-width: 440px; width: 92%;
+      text-align: center;
+      box-shadow: 0 0 60px var(--glow-color), 0 40px 80px rgba(0,0,0,0.6);
+      animation: cardIn 0.8s cubic-bezier(.22,1,.36,1) both;
+      overflow: hidden;
+    }
+    @keyframes cardIn {
+      from { opacity: 0; transform: translateY(50px) scale(0.93); }
+      to   { opacity: 1; transform: translateY(0) scale(1); }
+    }
+    .hero {
+      background: linear-gradient(160deg, #0e2060 0%, #071030 100%);
+      padding: 36px 24px 0;
+      position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 50% 80%, rgba(59,130,246,0.25) 0%, transparent 70%);
+    }
+    .app-title {
+      font-size: 2.8rem; font-weight: 900; letter-spacing: 4px;
+      background: linear-gradient(135deg, #ffffff 30%, #60a5fa 70%, #3b82f6 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      position: relative; z-index: 2; margin-bottom: 4px;
+    }
+    .tagline {
+      font-size: 0.82rem; color: #60a5fa; letter-spacing: 2px;
+      font-weight: 600; position: relative; z-index: 2;
+      margin-bottom: 12px; text-transform: uppercase;
+    }
+    .mascot-wrap {
+      position: relative; z-index: 2;
+      height: 210px;
+      display: flex; align-items: flex-end; justify-content: center;
+    }
+    .mascot-wrap img {
+      height: 220px; width: auto; object-fit: contain;
+      filter: drop-shadow(0 10px 30px rgba(59,130,246,0.6));
+      animation: mascotFloat 3.5s ease-in-out infinite;
+    }
+    @keyframes mascotFloat {
+      0%,100% { transform: translateY(0); }
+      50%      { transform: translateY(-12px); }
+    }
+    .body { padding: 28px 32px 32px; }
+    .badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: rgba(59,130,246,0.12);
+      border: 1px solid rgba(59,130,246,0.25);
+      border-radius: 20px; padding: 5px 14px;
+      font-size: 0.75rem; color: #93c5fd; margin-bottom: 18px;
+    }
+    .badge::before {
+      content: ''; width: 7px; height: 7px;
+      background: #22c55e; border-radius: 50%;
+      box-shadow: 0 0 6px #22c55e;
+      animation: blink 1.5s infinite;
+    }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
+    .stats {
+      display: flex; justify-content: center;
+      margin-bottom: 22px;
+      background: rgba(255,255,255,0.04);
+      border-radius: 16px;
+      border: 1px solid rgba(59,130,246,0.12);
+      overflow: hidden;
+    }
+    .stat { flex: 1; padding: 14px 8px; display: flex; flex-direction: column; gap: 4px; position: relative; }
+    .stat + .stat::before {
+      content: ''; position: absolute; right: 0; top: 20%; height: 60%;
+      width: 1px; background: rgba(59,130,246,0.2);
+    }
+    .stat-val { font-size: 1rem; font-weight: 800; color: #60a5fa; }
+    .stat-lbl { font-size: 0.72rem; color: var(--sub); }
+    .btn-download {
+      display: flex; align-items: center; justify-content: center; gap: 12px;
+      width: 100%; padding: 18px 24px; border-radius: 16px;
+      background: linear-gradient(135deg, #1d4ed8 0%, #3b82f6 50%, #60a5fa 100%);
+      color: #fff; font-family: 'Cairo', sans-serif;
+      font-size: 1.1rem; font-weight: 800;
+      text-decoration: none; border: none; cursor: pointer;
+      transition: transform 0.25s, box-shadow 0.25s, filter 0.25s;
+      box-shadow: 0 8px 32px rgba(59,130,246,0.5), 0 2px 0 rgba(255,255,255,0.15) inset;
+      position: relative; overflow: hidden;
+      margin-bottom: 16px; letter-spacing: 0.5px;
+    }
+    .btn-download::after {
+      content: ''; position: absolute;
+      top: 0; left: 0; right: 0; height: 50%;
+      background: linear-gradient(180deg, rgba(255,255,255,0.15), transparent);
+      pointer-events: none;
+    }
+    .btn-download::before {
+      content: ''; position: absolute;
+      top: 0; left: -100%; width: 60%; height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transform: skewX(-20deg);
+      animation: shimmer 3s infinite;
+    }
+    @keyframes shimmer { 0%{left:-100%} 60%,100%{left:140%} }
+    .btn-download:hover { transform: translateY(-3px) scale(1.02); box-shadow: 0 14px 44px rgba(59,130,246,0.65); filter: brightness(1.1); }
+    .btn-download:active { transform: scale(0.97); }
+    .btn-download svg { width: 24px; height: 24px; fill: #fff; flex-shrink: 0; }
+    .note { font-size: 0.76rem; color: var(--sub); line-height: 1.9; }
+    .note .hl { color: #60a5fa; font-weight: 600; }
+  </style>
+</head>
+<body>
+  <div class="orb orb1"></div>
+  <div class="orb orb2"></div>
+  <div class="orb orb3"></div>
+  <div class="card">
+    <div class="hero">
+      <div class="app-title">ZMAX3</div>
+      <div class="tagline">Next Level Experience</div>
+      <div class="mascot-wrap">
+        <img src="1000266750.png" alt="ZMAX3"/>
+      </div>
+    </div>
+    <div class="body">
+      <div class="badge">متاح الآن للتحميل</div>
+      <div class="stats">
+        <div class="stat"><span class="stat-val">مجاني</span><span class="stat-lbl">السعر</span></div>
+        <div class="stat"><span class="stat-val">APK</span><span class="stat-lbl">الصيغة</span></div>
+        <div class="stat"><span class="stat-val">5.0+</span><span class="stat-lbl">Android</span></div>
+      </div>
+      <a class="btn-download" href="app-release.apk" download="ZMAX3.apk">
+        <svg viewBox="0 0 24 24"><path d="M5 20h14v-2H5v2zm7-18L5.33 9h3.84v4h5.66V9h3.84L12 2z"/></svg>
+        تحميل ZMAX3 الآن
+      </a>
+      <p class="note">
+        ✅ ملف آمن ومضمون &nbsp;•&nbsp; صيغة APK<br/>
+        <span class="hl">فعّل "مصادر غير معروفة"</span> في إعدادات الجهاز قبل التثبيت
+      </p>
+    </div>
+  </div>
+</body>
+</html>
